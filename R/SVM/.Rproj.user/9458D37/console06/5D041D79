@@ -1,0 +1,41 @@
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+]0;~/projects/GTx/week1[?1034h(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ ls
+credit_card_data-headers.txt	week1-homework.R
+credit_card_data.txt		week1.Rproj
+nvm is not compatible with the npm config "prefix" option: currently set to "/usr/local"
+Run `npm config delete prefix` or `nvm use --delete-prefix v8.9.0 --silent` to unset it.
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+nvm is not compatible with the npm config "prefix" option: currently set to "/usr/local"
+Run `npm config delete prefix` or `nvm use --delete-prefix v8.9.0 --silent` to unset it.
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+nvm is not compatible with the npm config "prefix" option: currently set to "/usr/local"
+Run `npm config delete prefix` or `nvm use --delete-prefix v8.9.0 --silent` to unset it.
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+]0;~/projects/GTx/week1[?1034h(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ ls
+credit_card_data-headers.txt	week1-homework.R
+credit_card_data.txt		week1.Rproj
+]0;~/projects/GTx/week1(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ ls
+credit_card_data-headers.txt	week1-homework.R
+credit_card_data.txt		week1.Rproj
+]0;~/projects/GTx/week1(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ [K(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ [K(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ [K(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ [K(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ ls
+Q2-2-1-SVM.R			Q3-1-1-CrossValidation.R	credit_card_data-headers.txt	week1.Rproj
+Q2-2-2-nonLinear-Kernal.R	Q3-1-cross-validation.R		credit_card_data.txt
+Q2-2-3-KNN.R			Q3-2-split-data.R		week1-homework.R
+]0;~/projects/GTx/week1(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ rm Q3-1-1-CrossValidation.R
+]0;~/projects/GTx/week1(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ ls
+Q2-2-1-SVM.R			Q3-1-cross-validation.R		credit_card_data.txt
+Q2-2-2-nonLinear-Kernal.R	Q3-2-split-data.R		week1-homework.R
+Q2-2-3-KNN.R			credit_card_data-headers.txt	week1.Rproj
+]0;~/projects/GTx/week1(base) rosecondon:/Users/rosecondon/projects/GTx/week1$ 

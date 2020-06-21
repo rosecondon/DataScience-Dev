@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590334901175.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4141482554",
+    "id" : "228A4854",
+    "lastKnownWriteTime" : 1590346582,
+    "last_content_update" : 1590346582135,
+    "path" : "~/projects/GTx/week1/Q3-2-split-data.R",
+    "project_path" : "Q3-2-split-data.R",
+    "properties" : {
+        "cursorPosition" : "83,46",
+        "scrollLine" : "66",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
