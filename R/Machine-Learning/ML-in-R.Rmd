@@ -1,0 +1,194 @@
+---
+title: "Machine Learning in R"
+author: "Rose Condon"
+date: "6/21/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This excerise is based on the blog written by Jason Brownlee "Spot Check Machine Learning Algorithms in R". The blog has great insights for planning Machine Learning project, regardless the project written in any programming language.
+
+This excerise contain steps details of data anlysis with machine learning from R package.
+
+# Implementation 
+
+## Clean environment
+
+```{r}
+rm(list = ls())
+```
+
+## Load required 
+
+```{r}
+library(caret)
+```
+
+## Load data, we are using the iris datasets from caret package
+```{r}
+data(iris)
+dataset <- iris
+# view datasets, you can use either dataset or iris, they are identical
+head(iris)
+```
+
+## Data preparation
+```{r}
+# Create a sample from original dataset, split sample data 80% for training model and validation 
+sample_index <- createDataPartition(dataset$Species, p=0.80, list=FALSE)
+validation <- dataset[-sample_index,] # 20% of oroginal
+# view validation datasets
+tail(validation)
+# 80% for training data
+t_dataset <- dataset[sample_index,]
+# view training datasets
+head(t_dataset)
+```
+
+## Here, we do some EDA
+
+```{r}
+# Dimension
+dim(t_dataset)
+# check type of attributes (also called predictors)
+sapply(t_dataset, class)
+# A class variable type is a factor which has multiple class labels or leverls. Here we have Species variable type is class.
+levels(t_dataset$Species)
+```
+
+Now we know in this dataset, we can refer to an attribute by name / labels as a property of the dataset.
+[1] "setosa"     "versicolor" "virginica"
+
+A typical multi-class or a multinomial classification problem.
+
+## Before we work at this classification problem, let's have a look at the class distribution
+
+```{r}
+percentage <- prop.table(table(t_dataset$Species)) * 100
+# Create a dataset to have only our factor and distribution
+cbind(freq=table(t_dataset$Species), percentage=percentage)
+```
+
+```{r}
+# View training dataset statistical summary
+summary(t_dataset)
+```
+
+## Plots of individual variable
+
+### set up x and y for input and output
+
+```{r}
+x <- t_dataset[,1:4] # col 1-4
+y <- t_dataset[,5]  # col 5 => Species
+```
+
+### Boxplot for each attri (col 1-4)
+
+```{r}
+par(mfrow=c(1,4))
+for(i in 1:4) {
+  boxplot(x[,i], main=names(iris)[i])
+}
+```
+
+### Barplot for class (Species)
+
+```{r}
+plot(y, main="Barplot", las=1, horiz=TRUE)
+```
+
+### Scatter Plots to look at the interaction between the variables
+
+```{r}
+# Note: You may need to run install.packages("ellipse")
+featurePlot(x=x, y=y, plot="ellipse")
+```
+
+```{r}
+# and Box plot
+featurePlot(x=x, y=y, plot="box")
+```
+
+### Density plots for each attribute by class value
+```{r}
+scales <- list(x=list(relation="free"), y=list(relation="free"))
+featurePlot(x=x, y=y, plot="density", scales=scales)
+```
+
+## Build our ML models
+
+We will build model with k-folder cross-validation, using trainControl function to generate params to control how model will be built.
+
+```{r}
+k<-10
+control <- trainControl(method="cv", number=10)
+# will use the metric of “Accuracy” to evaluate models
+metric <- "Accuracy"
+```
+
+## These are popular ML algorithms we will use to build ML models
+
+```{r}
+# a) Linear Discriminant Analysis (LDA)
+set.seed(1)
+m_lda <- train(Species~., data=t_dataset, method="lda", metric=metric, trControl=control)
+# b) Classification and Regression Trees (CART)
+set.seed(1)
+m_cart <- train(Species~., data=t_dataset, method="rpart", metric=metric, trControl=control)
+# c) KNN - nonlinear
+set.seed(1)
+m_knn <- train(Species~., data=t_dataset, method="knn", metric=metric, trControl=control)
+# d) SVM with a linear kernel
+set.seed(1)
+m_svm <- train(Species~., data=t_dataset, method="svmRadial", metric=metric, trControl=control)
+# e) Random Forest
+set.seed(1)
+m_rf <- train(Species~., data=t_dataset, method="rf", metric=metric, trControl=control)
+```
+
+## Estimate all 5 models performance by checking accuracy
+
+```{r}
+accuracies <- resamples(list(lda=m_lda, cart=m_cart, knn=m_knn, svm=m_svm, rf=m_rf))
+summary(accuracies)
+```
+
+We are looking for accuracy more close to 1.0
+
+## Plot them
+
+```{r}
+dotplot(accuracies)
+```
+
+So, from accuracy and plot, we know LDA model is more accurate.
+
+## Double check LDA model details
+
+```{r}
+print(m_lda)
+```
+
+You may also run str(m_lda) to find accuracy SD
+
+LDA model has 98% accuracy and accuracy +/- 3%.
+
+## Make prediction
+
+We built LDA model, now we should find out the accuracy of the model on our validation dataset.
+
+```{r}
+predictions <- predict(m_lda, validation)
+confusionMatrix(predictions, validation$Species)
+```
+
+The accuracy for validation dataset is 96.7%, close what it predicts on traing dataset which is 98%
+
+So, we can say our **LDA** ML model is accurate and a reliable for this classification problem.
+
